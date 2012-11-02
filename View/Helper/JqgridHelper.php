@@ -183,7 +183,7 @@ EOF;
 
 		if ($this->filterMode) {
 			$code .=<<<EOF
-grid.getPostData().filterMode = '{$this->filterMode}';
+grid.getGridParam('postData').filterMode = '{$this->filterMode}';
 EOF;
 		}
 
@@ -216,8 +216,8 @@ grid.navButtonAdd('#$pager',{
 	title: '$buttonTitle',
 	buttonicon: 'ui-icon-disk',
 	onClickButton: function() {
-		var url = grid.getGridParam('url')
-		var post = grid.getPostData();
+		var url = grid.getGridParam('url');
+		var post = grid.getGridParam('postData');
 		var param = [];
 		var form = $('#form_download_{$id}');
 
