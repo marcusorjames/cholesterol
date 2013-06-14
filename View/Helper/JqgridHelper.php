@@ -7,18 +7,18 @@
  */
 class JqgridHelper extends AppHelper {
 
-	var $helpers = array('Html');
+	public $helpers = array('Html');
 
-	var $modelName;
+	public $modelName;
 
-	var $pager; // ID of pager element
+	public $pager; // ID of pager element
 
-	var $filterToolbar;
+	public $filterToolbar;
 
-	var $exportOptions;
+	public $exportOptions;
 
 	/** Generate container for jqGrid */
-	function grid($id, $options = array()) {
+	public function grid($id, $options = array()) {
 		$options = Set::merge(array(
 			'modelName' => false,
 			'class' => false,
@@ -103,7 +103,7 @@ EOF;
 	 *  @param $gridOptions mixed jqgrid's option
 	 *  @param $navGridOption mixed jqgrid's navigator options
 	 */
-	function script($id, $gridOptions = array(), $navGridOptions = array()) {
+	public function script($id, $gridOptions = array(), $navGridOptions = array()) {
 
 		// set defaults for rowList first
 		if (!isset($gridOptions['rowList'])) {
@@ -183,7 +183,7 @@ EOF;
 
 		if ($this->filterMode) {
 			$code .=<<<EOF
-grid.getPostData().filterMode = '{$this->filterMode}';
+grid.getGridParam('postData').filterMode = '{$this->filterMode}';
 EOF;
 		}
 
@@ -216,8 +216,8 @@ grid.navButtonAdd('#$pager',{
 	title: '$buttonTitle',
 	buttonicon: 'ui-icon-disk',
 	onClickButton: function() {
-		var url = grid.getGridParam('url')
-		var post = grid.getPostData();
+		var url = grid.getGridParam('url');
+		var post = grid.getGridParam('postData');
 		var param = [];
 		var form = $('#form_download_{$id}');
 
